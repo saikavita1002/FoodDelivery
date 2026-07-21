@@ -57,13 +57,12 @@ const Restaurants = () => {
     <div className="page">
       <div className="restaurant-header">
         <img
-          src={
-            restaurant.image
-              ? `${IMAGE_BASE}/${restaurant.image}`
-              : 'https://via.placeholder.com/400x250?text=Restaurant'
-          }
-          alt={restaurant.name}
-        />
+  src={
+    restaurant.image ||
+    'https://via.placeholder.com/400x250?text=Restaurant'
+  }
+  alt={restaurant.name}
+/>
 
         <div>
           <h2>{restaurant.name}</h2>
@@ -82,13 +81,12 @@ const Restaurants = () => {
             <div className="card" key={food._id}>
               <Link to={`/food/${food._id}`}>
                 <img
-                  src={
-                    food.image
-                      ? `${IMAGE_BASE}/${food.image}`
-                      : 'https://via.placeholder.com/200x140?text=Food'
-                  }
-                  alt={food.foodName}
-                />
+  src={
+    food.image ||
+    'https://via.placeholder.com/400x250?text=Restaurant'
+  }
+  alt={food.name}
+/>
                 <h4>{food.foodName}</h4>
               </Link>
 
