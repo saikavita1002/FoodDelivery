@@ -42,10 +42,7 @@ const FoodDetails = () => {
 
   return (
     <div className="page food-details">
-      <img
-        src={food.image ? `${IMAGE_BASE}/${food.image}` : 'https://via.placeholder.com/400x260?text=Food'}
-        alt={food.foodName}
-      />
+     
       <div>
         <h2>{food.foodName}</h2>
         <p className="muted">{food.category}</p>

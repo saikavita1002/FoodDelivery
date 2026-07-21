@@ -51,9 +51,12 @@ const Cart = () => {
         {cart.items.map((item) => (
           <div className="cart-row" key={item.foodId?._id || item.foodId}>
             <img
-              src={item.foodId?.image ? `${IMAGE_BASE}/${item.foodId.image}` : 'https://via.placeholder.com/80x80?text=Food'}
-              alt={item.foodId?.foodName}
-            />
+  src={
+    food.image ||
+    'https://via.placeholder.com/400x250?text=Restaurant'
+  }
+  alt={food.name}
+/>
             <div className="cart-row-info">
               <h4>{item.foodId?.foodName}</h4>
               <p className="muted">₹{item.foodId?.price} each</p>
