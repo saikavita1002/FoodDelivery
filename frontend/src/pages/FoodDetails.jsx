@@ -5,10 +5,7 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
 <img
-  src={
-    food.image ||
-    'https://via.placeholder.com/200x140?text=Food'
-  }
+  src={food.image || 'https://via.placeholder.com/400x260?text=Food'}
   alt={food.foodName}
 />
 

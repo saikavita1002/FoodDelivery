@@ -4,8 +4,10 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { placeOrder } from '../services/orderService';
 
-const IMAGE_BASE = import.meta.env.VITE_IMAGE_URL || 'http://localhost:5000/uploads';
-
+<img
+  src={item.foodId?.image || 'https://via.placeholder.com/80x80?text=Food'}
+  alt={item.foodId?.foodName}
+/>
 const Cart = () => {
   const { cart, updateItem, removeItem, refreshCart } = useCart();
   const { user } = useAuth();
