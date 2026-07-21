@@ -64,13 +64,13 @@ const updateRestaurant = async (req, res) => {
       return res.status(403).json({ message: 'Not authorized to update this restaurant' });
     }
 
-    const { name, address, phone } = req.body;
+    const { name, address, phone ,cuisine, openingHours } = req.body;
     restaurant.name = name ?? restaurant.name;
     restaurant.address = address ?? restaurant.address;
     restaurant.phone = phone ?? restaurant.phone;
     restaurant.cuisine = cuisine ?? restaurant.cuisine;
     restaurant.openingHours = openingHours ?? restaurant.openingHours;
-    if (req.file) restaurant.image = req.file.filename;
+    if (req.file) restaurant.image=req.file.path;
 
     await restaurant.save();
     res.json(restaurant);

@@ -94,7 +94,7 @@ const updateFood = async (req, res) => {
     food.category = category ?? food.category;
     food.description = description ?? food.description;
     if (isAvailable !== undefined) food.isAvailable = isAvailable;
-    if (req.file) food.image = req.file.filename;
+    if (req.file) food.image=req.file.path;
 
     await food.save();
     res.json(food);
