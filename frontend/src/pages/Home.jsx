@@ -16,7 +16,11 @@ const Home = () => {
     const load = async () => {
       try {
         const { data } = await getRestaurants();
-        setRestaurants(data);
+
+console.log("Restaurants:", data);
+console.log("Is restaurants array?", Array.isArray(data));
+
+setRestaurants(Array.isArray(data) ? data : []);
       } catch (err) {
         setError('Could not load restaurants. Is the backend running?');
       } finally {

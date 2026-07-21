@@ -16,10 +16,16 @@ const Restaurants = () => {
 
   useEffect(() => {
     const load = async () => {
-      const { data } = await getRestaurantById(id);
-      setRestaurant(data);
-      setLoading(false);
+      try {
+        const { data } = await getRestaurantById(id);
+        setRestaurant(data);
+      } catch (error) {
+        console.error(error);
+      } finally {
+        setLoading(false);
+      }
     };
+
     load();
   }, [id]);
 
@@ -28,19 +34,30 @@ const Restaurants = () => {
       alert('Please login to add items to your cart');
       return;
     }
+
     await addItem(foodId, 1);
     setAddedId(foodId);
     setTimeout(() => setAddedId(null), 1200);
   };
 
   if (loading) return <p className="center-text">Loading...</p>;
-  if (!restaurant) return <p className="center-text">Restaurant not found.</p>;
+
+  if (!restaurant) {
+    return <p className="center-text">Restaurant not found.</p>;
+  }
 
   return (
     <div className="page">
       <div className="restaurant-header">
-      <img
-  src={restaurant.image ? `${IMAGE_BASE}/${restaurant.image}`: 'https://via.placeholder.com/400x250?text=Restaurant'}alt={restaurant.name}/>
+        <img
+          src={
+            restaurant.image
+              ? `${IMAGE_BASE}/${restaurant.image}`
+              : 'https://via.placeholder.com/400x250?text=Restaurant'
+          }
+          alt={restaurant.name}
+        />
+
         <div>
           <h2>{restaurant.name}</h2>
           <p className="muted">{restaurant.address}</p>
@@ -49,7 +66,8 @@ const Restaurants = () => {
       </div>
 
       <h3>Menu</h3>
-      {restaurant.menu.length === 0 ? (
+
+      {!restaurant.menu || restaurant.menu.length === 0 ? (
         <p>No menu items yet.</p>
       ) : (
         <div className="grid">
@@ -57,13 +75,19 @@ const Restaurants = () => {
             <div className="card" key={food._id}>
               <Link to={`/food/${food._id}`}>
                 <img
-                  src={food.image ? `${IMAGE_BASE}/${food.image}` : 'https://via.placeholder.com/200x140?text=Food'}
+                  src={
+                    food.image
+                      ? `${IMAGE_BASE}/${food.image}`
+                      : 'https://via.placeholder.com/200x140?text=Food'
+                  }
                   alt={food.foodName}
                 />
                 <h4>{food.foodName}</h4>
               </Link>
+
               <p className="muted">{food.category}</p>
               <p>₹{food.price}</p>
+
               <button onClick={() => handleAdd(food._id)}>
                 {addedId === food._id ? 'Added ✓' : 'Add to Cart'}
               </button>
