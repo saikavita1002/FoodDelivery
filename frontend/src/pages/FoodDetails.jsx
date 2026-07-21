@@ -42,7 +42,7 @@ const FoodDetails = () => {
 
   return (
     <div className="page food-details">
-     
+      
       <div>
         <h2>{food.foodName}</h2>
         <p className="muted">{food.category}</p>

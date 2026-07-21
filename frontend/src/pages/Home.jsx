@@ -64,9 +64,9 @@ setRestaurants(Array.isArray(data) ? data : []);
               {searchResults.map((food) => (
                 <Link to={`/food/${food._id}`} key={food._id} className="card">
                   <img
-                    src={food.image ? `${IMAGE_BASE}/${food.image}` : 'https://via.placeholder.com/200x140?text=Food'}
-                    alt={food.foodName}
-                  />
+  src={food.image || 'https://via.placeholder.com/200x140?text=Food'}
+  alt={food.foodName}
+/>
                   <h3>{food.foodName}</h3>
                   <p>₹{food.price}</p>
                   <p className="muted">{food.restaurantId?.name}</p>
@@ -85,9 +85,9 @@ setRestaurants(Array.isArray(data) ? data : []);
               {restaurants.map((r) => (
                 <Link to={`/restaurants/${r._id}`} key={r._id} className="card">
                   <img
-                    src={r.image ? `${IMAGE_BASE}/${r.image}` : 'https://via.placeholder.com/200x140?text=Restaurant'}
-                    alt={r.name}
-                  />
+  src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
+  alt={r.name}
+/>
                   <h3>{r.name}</h3>
                   <p className="muted">{r.address}</p>
                 </Link>
