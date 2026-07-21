@@ -4,7 +4,10 @@ import { getRestaurantById } from '../services/restaurantService';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
-const IMAGE_BASE = import.meta.env.VITE_IMAGE_URL || 'http://localhost:5000/uploads';
+<img
+  src={restaurant.image}
+  alt={restaurant.name}
+/>
 
 const Restaurants = () => {
   const { id } = useParams();
