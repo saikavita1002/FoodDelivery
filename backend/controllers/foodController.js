@@ -29,7 +29,7 @@ const addFood = async (req, res) => {
       category,
       description,
       restaurantId,
-      image: req.file ? req.file.filename : '',
+      image: req.file ? req.file.path : '',
     });
 
     res.status(201).json(food);

@@ -4,7 +4,10 @@ import { getFoodById } from '../services/foodService';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
-const IMAGE_BASE = import.meta.env.VITE_IMAGE_URL || 'http://localhost:5000/uploads';
+<img
+  src={food.image ? `${IMAGE_BASE}/${food.image}` : 'https://via.placeholder.com/400x260?text=Food'}
+  alt={food.foodName}
+/>
 
 const FoodDetails = () => {
   const { id } = useParams();

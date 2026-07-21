@@ -15,7 +15,7 @@ const createRestaurant = async (req, res) => {
       phone,
       cuisine,
       openingHours,
-      image: req.file ? req.file.filename : '',
+      image: req.file ? req.file.path : '',
       ownerId: req.user._id,
     });
 
