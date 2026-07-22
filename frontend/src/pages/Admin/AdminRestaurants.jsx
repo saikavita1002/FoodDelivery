@@ -2,14 +2,17 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { getRestaurants, createRestaurant, deleteRestaurant } from '../../services/restaurantService';
 
-<img
-  src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
-  alt={r.name}
-/>
+
 const AdminRestaurants = ({ onSelectRestaurant }) => {
   const { user } = useAuth();
   const [restaurants, setRestaurants] = useState([]);
-  const [form, setForm] = useState({ name: '', address: '', phone: '',cuisine: '', openingHours: '' });
+ setForm({
+  name: '',
+  address: '',
+  phone: '',
+  cuisine: '',
+  openingHours: ''
+});
   const [imageFile, setImageFile] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
@@ -65,19 +68,29 @@ const AdminRestaurants = ({ onSelectRestaurant }) => {
         <button type="submit">Add Restaurant</button>
       </form>
 
-      <div className="grid">
-        {restaurants.map((r) => (
-          <div className="card" key={r._id}>
-            <img
-  src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
-  alt={r.name}
-/>
-            <p className="muted">{r.address}</p>
-            <button onClick={() => onSelectRestaurant(r)}>Manage Menu</button>
-            <button className="btn-danger" onClick={() => handleDelete(r._id)}>Delete</button>
-          </div>
-        ))}
-      </div>
+      <div className="card" key={r._id}>
+  <img
+    src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
+    alt={r.name}
+  />
+
+  <h4>{r.name}</h4>
+  <p className="muted">{r.address}</p>
+  <p className="muted">📞 {r.phone}</p>
+  <p className="muted">🍽 {r.cuisine}</p>
+  <p className="muted">🕒 {r.openingHours}</p>
+
+  <button onClick={() => onSelectRestaurant(r)}>
+    Manage Menu
+  </button>
+
+  <button
+    className="btn-danger"
+    onClick={() => handleDelete(r._id)}
+  >
+    Delete
+  </button>
+</div>
     </div>
   );
 };
