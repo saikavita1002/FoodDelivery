@@ -6,7 +6,6 @@ import { useAuth } from '../context/AuthContext';
 
 <img
   src={restaurant.image || 'https://via.placeholder.com/400x250?text=Restaurant'}
-      
   alt={restaurant.name}
 />
 
@@ -55,8 +54,7 @@ const Restaurants = () => {
       <div className="restaurant-header">
         <img
   src={
-    restaurant.image ||
-    'https://via.placeholder.com/400x250?text=Restaurant'
+    restaurant.image ||'https://via.placeholder.com/400x250?text=Restaurant'
   }
   alt={restaurant.name}
 />
