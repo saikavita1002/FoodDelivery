@@ -6,7 +6,7 @@ import { getRestaurants, createRestaurant, deleteRestaurant } from '../../servic
 const AdminRestaurants = ({ onSelectRestaurant }) => {
   const { user } = useAuth();
   const [restaurants, setRestaurants] = useState([]);
- setForm({
+  setForm({
   name: '',
   address: '',
   phone: '',
@@ -70,8 +70,8 @@ const AdminRestaurants = ({ onSelectRestaurant }) => {
 
       <div className="card" key={r._id}>
   <img
-    src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
-    alt={r.name}
+    src={restaurants.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
+    alt={restaurants.name}
   />
 
   <h4>{r.name}</h4>
