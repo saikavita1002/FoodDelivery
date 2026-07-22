@@ -3,8 +3,10 @@ import { Link } from 'react-router-dom';
 import { getRestaurants } from '../services/restaurantService';
 import { searchFoods } from '../services/foodService';
 
-const IMAGE_BASE = import.meta.env.VITE_IMAGE_URL || 'http://localhost:5000/uploads';
-
+<img
+  src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
+  alt={r.name}
+/>
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');

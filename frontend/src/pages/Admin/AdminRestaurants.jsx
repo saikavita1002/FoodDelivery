@@ -2,8 +2,10 @@ import { useEffect, useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { getRestaurants, createRestaurant, deleteRestaurant } from '../../services/restaurantService';
 
-const IMAGE_BASE = import.meta.env.VITE_IMAGE_URL || 'http://localhost:5000/uploads';
-
+<img
+  src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
+  alt={r.name}
+/>
 const AdminRestaurants = ({ onSelectRestaurant }) => {
   const { user } = useAuth();
   const [restaurants, setRestaurants] = useState([]);
@@ -66,8 +68,10 @@ const AdminRestaurants = ({ onSelectRestaurant }) => {
       <div className="grid">
         {restaurants.map((r) => (
           <div className="card" key={r._id}>
-            <img src={r.image ? `${IMAGE_BASE}/${r.image}` : 'https://via.placeholder.com/200x140?text=Restaurant'} alt={r.name} />
-            <h4>{r.name}</h4>
+            <img
+  src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
+  alt={r.name}
+/>
             <p className="muted">{r.address}</p>
             <button onClick={() => onSelectRestaurant(r)}>Manage Menu</button>
             <button className="btn-danger" onClick={() => handleDelete(r._id)}>Delete</button>
