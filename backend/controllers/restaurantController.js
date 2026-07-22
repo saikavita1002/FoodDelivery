@@ -4,7 +4,7 @@ const Food = require('../models/Food');
 // POST /api/restaurants  (protected: admin or restaurant_owner)
 const createRestaurant = async (req, res) => {
   try {
-    const { name, address, phone,cuisine,openingHours } = req.body;
+    const { name, address, phone,cuisine,openingHours,image } = req.body;
     if (!name || !address || !phone || !cuisine || !openingHours) {
       return res.status(400).json({ message: 'Name, address phone cuisine and openingHours are required' });
     }
@@ -15,7 +15,7 @@ const createRestaurant = async (req, res) => {
   phone,
   cuisine,
   openingHours,
-  image: req.file ? req.file.filename : "",
+  image,
   ownerId: req.user._id,
 });
 

@@ -20,6 +20,7 @@ const AdminRestaurants = ({ onSelectRestaurant }) => {
     phone: "",
     cuisine: "",
     openingHours: "",
+    image: ""
   });
 
   const [imageFile, setImageFile] = useState(null);

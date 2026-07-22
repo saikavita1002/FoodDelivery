@@ -4,8 +4,7 @@ import { getRestaurantById } from '../services/restaurantService';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
-const IMAGE_BASE =
-  import.meta.env.VITE_IMAGE_URL || "http://localhost:5000/uploads";
+
 
 const Restaurants = () => {
   const { id } = useParams();
@@ -51,11 +50,7 @@ const Restaurants = () => {
     <div className="page">
       <div className="restaurant-header">
         <img
-  src={
-    restaurant.image
-      ? `${IMAGE_BASE}/${restaurant.image}`
-      : "https://via.placeholder.com/400x250?text=Restaurant"
-  }
+  src={restaurant.image || "/images/default-restaurant.jpg"}
   alt={restaurant.name}
 />
 
@@ -76,12 +71,8 @@ const Restaurants = () => {
             <div className="card" key={food._id}>
               <Link to={`/food/${food._id}`}>
                 <img
-  src={
-    food.image
-      ? `${IMAGE_BASE}/${food.image}`
-      : "https://via.placeholder.com/400x250?text=Food"
-  }
-  alt={food.foodName}
+  src={food.image || "/images/default-food.jpg"}
+  alt={food.name}
 />
                 <h4>{food.foodName}</h4>
               </Link>

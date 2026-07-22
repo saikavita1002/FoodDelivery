@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
 import { getFoods, addFood, deleteFood, updateFood } from '../../services/foodService';
 
-const IMAGE_BASE = import.meta.env.VITE_IMAGE_URL || 'http://localhost:5000/uploads';
 
 const AdminMenu = ({ restaurant, onBack }) => {
   const [foods, setFoods] = useState([]);
-  const [form, setForm] = useState({ foodName: '', price: '', category: '', description: '' });
-  const [imageFile, setImageFile] = useState(null);
+  const [form, setForm] = useState({ foodName: '', price: '', category: '', description: '',image: '' });
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(true);
 
@@ -22,13 +20,12 @@ const AdminMenu = ({ restaurant, onBack }) => {
     e.preventDefault();
     setError('');
     try {
-      const fd = new FormData();
-      Object.entries(form).forEach(([key, value]) => fd.append(key, value));
-      fd.append('restaurantId', restaurant._id);
-      if (imageFile) fd.append('image', imageFile);
-      await addFood(fd);
-      setForm({ foodName: '', price: '', category: '', description: '' });
-      setImageFile(null);
+      await addFood({
+  ...form,
+  restaurantId: restaurant._id,
+  image: `/images/${form.image}`,
+});
+      setForm({ foodName: '', price: '', category: '', description: '' ,image: ''});
       load();
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to add food item');
@@ -61,14 +58,22 @@ const AdminMenu = ({ restaurant, onBack }) => {
         <input type="number" placeholder="Price" value={form.price} onChange={(e) => setForm({ ...form, price: e.target.value })} required min={0} />
         <input placeholder="Category" value={form.category} onChange={(e) => setForm({ ...form, category: e.target.value })} required />
         <input placeholder="Description" value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
-        <input type="file" accept="image/*" onChange={(e) => setImageFile(e.target.files[0])} />
+        <input
+  type="text"
+  placeholder="Image name (e.g. paradise.jpg)"
+  value={form.image}
+  onChange={(e) => setForm({ ...form, image: e.target.value })}
+/>
         <button type="submit">Add Food Item</button>
       </form>
 
       <div className="grid">
         {foods.map((food) => (
           <div className="card" key={food._id}>
-            <img src={food.image ? `${IMAGE_BASE}/${food.image}` : 'https://via.placeholder.com/200x140?text=Food'} alt={food.foodName} />
+            <img
+  src={food.image || "/images/default-food.jpg"}
+  alt={food.foodName}
+/>
             <h4>{food.foodName}</h4>
             <p className="muted">{food.category} — ₹{food.price}</p>
             <p className="muted">{food.isAvailable ? '✅ Available' : '❌ Unavailable'}</p>
