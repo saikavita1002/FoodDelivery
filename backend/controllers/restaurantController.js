@@ -10,14 +10,14 @@ const createRestaurant = async (req, res) => {
     }
 
     const restaurant = await Restaurant.create({
-      name,
-      address,
-      phone,
-      cuisine,
-      openingHours,
-      image: req.file ? req.file.path : '',
-      ownerId: req.user._id,
-    });
+  name,
+  address,
+  phone,
+  cuisine,
+  openingHours,
+  image: req.file ? req.file.filename : "",
+  ownerId: req.user._id,
+});
 
     res.status(201).json(restaurant);
   } catch (error) {
@@ -70,7 +70,7 @@ const updateRestaurant = async (req, res) => {
     restaurant.phone = phone ?? restaurant.phone;
     restaurant.cuisine = cuisine ?? restaurant.cuisine;
     restaurant.openingHours = openingHours ?? restaurant.openingHours;
-    if (req.file) restaurant.image=req.file.path;
+    if (req.file) restaurant.image=req.filename;
 
     await restaurant.save();
     res.json(restaurant);
