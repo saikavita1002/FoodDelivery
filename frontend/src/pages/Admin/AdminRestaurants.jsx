@@ -70,8 +70,8 @@ const AdminRestaurants = ({ onSelectRestaurant }) => {
 
       <div className="card" key={r._id}>
   <img
-    src={restaurants.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
-    alt={restaurants.name}
+    src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
+    alt={r.name}
   />
 
   <h4>{r.name}</h4>
