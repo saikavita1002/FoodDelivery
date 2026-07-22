@@ -3,10 +3,7 @@ import { Link } from 'react-router-dom';
 import { getRestaurants } from '../services/restaurantService';
 import { searchFoods } from '../services/foodService';
 
-<img
-  src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
-  alt={r.name}
-/>
+
 const Home = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
@@ -87,8 +84,8 @@ setRestaurants(Array.isArray(data) ? data : []);
               {restaurants.map((r) => (
                 <Link to={`/restaurants/${r._id}`} key={r._id} className="card">
                   <img
-  src={r.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
-  alt={r.name}
+  src={restaurants.image || 'https://via.placeholder.com/200x140?text=Restaurant'}
+  alt={restaurants.name}
 />
                   <h3>{r.name}</h3>
                   <p className="muted">{r.address}</p>

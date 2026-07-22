@@ -4,10 +4,6 @@ import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { placeOrder } from '../services/orderService';
 
-<img
-  src={item.foodId?.image || 'https://via.placeholder.com/80x80?text=Food'}
-  alt={item.foodId?.foodName}
-/>
 const Cart = () => {
   const { cart, updateItem, removeItem, refreshCart } = useCart();
   const { user } = useAuth();

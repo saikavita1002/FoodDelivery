@@ -4,10 +4,7 @@ import { getRestaurantById } from '../services/restaurantService';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 
-<img
-  src={restaurant.image || 'https://via.placeholder.com/400x250?text=Restaurant'}
-  alt={restaurant.name}
-/>
+
 
 const Restaurants = () => {
   const { id } = useParams();
